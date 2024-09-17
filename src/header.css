@@ -1,0 +1,15 @@
+h1{
+   text-align: center;
+
+}
+
+.navbar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbarButton{
+    font-size: 15px;
+}
