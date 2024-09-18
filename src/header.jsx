@@ -4,12 +4,12 @@ function Header(){
     return(
         <div className="header">
 
-            <h1>Chiselny huinya</h1>
+            <h1>Numericl analysis</h1>
 
             <div className="navbar">
 
-                <a href = "./gaus.html" className="navbarButton">
-                    <button>Gaus</button>
+                <a href = "./gaus.html">
+                    <button className="navbarButton">Gaus</button>
                 </a>
 
             </div>

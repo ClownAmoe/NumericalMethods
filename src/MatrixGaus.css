@@ -1,28 +1,39 @@
-.matrix-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); /* Define the grid for the matrix */
-    gap: 10px; /* Add spacing between inputs */
-  }
+input {
+  text-align:center;
+  width: 50px;
+  margin-bottom: 25px;
+  height: 25px;
+  background-color: #777269;
+  transition: 0.3s;
+}
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 12p; 
+}
+
+th, td{
+  padding-right: 20px;
+}
+
+.res{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
   
-  .matrix-row {
-    display: contents; /* Allows the rows to be part of the grid */
-  }
-  
-  .matrix-cell {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  input {
-    width: 50px; /* Set fixed width for input fields to resemble a matrix cell */
-    padding: 5px;
-    text-align: center;
-  }
-  
-  label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 12px; /* Slightly smaller text for labels */
-  }
-  
+}
+.solveBtn{
+  font-size: 23px;
+  width: 200px;
+  background-color: #777269;
+  height: 35px;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.solveBtn:hover{
+  background-color: #d88e08;
+  transform: scale(1.1);
+}

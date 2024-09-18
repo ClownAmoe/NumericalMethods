@@ -1,41 +1,121 @@
-import { useState } from "react";
 import "./MatrixGaus.css";
+import { useState, useEffect } from "react";
 
-function MatrixGaus({ size }) {  // Destructure size from props
-  const [inputs, setInputs] = useState(Array(size * size).fill(""));
+// Helper function to generate a matrix for the Gauss method with an extra column for the constants
+const generateMatrix = (size) => {
+  return Array.from({ length: size }, () =>
+    Array.from({ length: size + 1 }, () => "")
+  );
+};
 
-  const handleChange = (e, row, col) => {
-    const newInputs = [...inputs];
-    newInputs[row * size + col] = e.target.value;
-    setInputs(newInputs);
+// Function to perform Gaussian elimination
+const GausLogic = (mtx, size) => {
+  for (let i = 0; i < size; ++i) {
+
+    for (let k = i + 1; k < size; ++k) {
+      const factor = mtx[k][i] / mtx[i][i];
+      for (let j = i; j < size + 1; ++j) {
+        mtx[k][j] -= factor * mtx[i][j];
+      }
+    }
+  }
+
+  const result = Array(size).fill(0);
+  for (let i = size - 1; i >= 0; --i) {
+    result[i] = mtx[i][size] / mtx[i][i];
+    for (let k = 0; k < i; ++k) {
+      mtx[k][size] -= mtx[k][i] * result[i];
+    }
+  }
+
+  return result;
+};
+
+function MatrixGaus({ size }) {
+  const [matrix, setMatrix] = useState(generateMatrix(size)); // Initialize the matrix state
+  const [result, setResult] = useState([]);
+
+  // Recreate the matrix whenever the size prop changes
+  useEffect(() => {
+    setMatrix(generateMatrix(size));
+  }, [size]);
+
+  // Notify parent component about the matrix change
+  useEffect(() => {
+    setMatrix(generateMatrix(size));
+  }, [size]);
+
+  const handleInputChange = (rowIndex, colIndex, event) => {
+    const newMatrix = matrix.map((row, rIndex) =>
+      row.map((cell, cIndex) =>
+        rIndex === rowIndex && cIndex === colIndex ? event.target.value : cell
+      )
+    );
+    setMatrix(newMatrix); // Update the matrix state with the new input values
   };
 
-  const createMtx = () => {
-    let matrix = [];
-    for (let row = 0; row < size; row++) {
-      let rowItems = [];
-      for (let col = 0; col < size; col++) {
-        rowItems.push(
-          <div key={`cell-${row}-${col}`}>
-            <label>
-              x{col + 1}{row + 1}:
-            </label>
-            <input
-              type="text"
-              value={inputs[row * size + col]}
-              onChange={(e) => handleChange(e, row, col)}
-            />
-          </div>
-        );
+  const handleSolve = () => {
+    try {
+      const size = matrix.length;
+      if (size === 0) {
+        alert("Matrix is empty. Please enter matrix values.");
+        return;
       }
-      matrix.push(<div key={`row-${row}`} className="matrix-row">{rowItems}</div>);
+      const mtxCopy = matrix.map(row => row.map(cell => parseFloat(cell) || 0)); // Convert to numbers
+      const solution = GausLogic(mtxCopy, size);
+      setResult(solution);
+    } catch (error) {
+      alert(error.message);
     }
-    return matrix;
   };
 
   return (
-    <div className="matrix-container">
-      {createMtx()}
+    <div className="matrixGaus">
+      <h1>Enter the matrix</h1>
+      <table className="matrixTable">
+        <tbody>
+          {matrix.map((row, rowIndex) => (
+            <tr key={rowIndex}>
+              {row.map((cell, colIndex) => (
+                <td key={colIndex}>
+                  {colIndex < size ? (
+                    <>
+                      <label>  x{colIndex + 1}:  </label>
+                      <input
+                        type="text"
+                        value={cell}
+                        onChange={(event) => handleInputChange(rowIndex, colIndex, event)}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <label>b{rowIndex + 1}:</label>
+                      <input
+                        type="text"
+                        value={cell}
+                        onChange={(event) => handleInputChange(rowIndex, colIndex, event)}
+                      />
+                    </>
+                  )}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div className="res">
+      <button onClick={handleSolve} className="solveBtn">Solve</button>
+      {result.length > 0 && (
+        <div className="result">
+          <h2>Solution:</h2>
+            {result.map((value, index) => (
+              <div className="xs">
+              <a key={index}>x{index + 1} = {value.toFixed(2)}</a>
+              </div>
+            ))}
+        </div>
+      )}
+        </div>
     </div>
   );
 }

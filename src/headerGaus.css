@@ -7,3 +7,30 @@ h1{
     justify-content: center;
     align-items: center;
 }
+.inputSize{
+    width: 250px;
+    margin-bottom: 25px;
+    height: 30px;
+    background-color: #777269;
+    transition: 0.3s;
+}
+::placeholder{
+    color: black;
+}
+
+input:hover{
+    background-color: #d88e08;
+}
+
+.confirmSize{
+    font-size: 23px;
+    width: 200px;
+    background-color: #777269;
+    height: 35px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+.confirmSize:hover{
+    background-color: #d88e08;
+    transform: scale(1.1);
+}
