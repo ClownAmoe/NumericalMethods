@@ -1,14 +1,12 @@
 import "./MatrixGaus.css";
 import { useState, useEffect } from "react";
 
-// Helper function to generate a matrix for the Gauss method with an extra column for the constants
 const generateMatrix = (size) => {
   return Array.from({ length: size }, () =>
     Array.from({ length: size + 1 }, () => "")
   );
 };
 
-// Function to perform Gaussian elimination
 const GausLogic = (mtx, size) => {
   for (let i = 0; i < size; ++i) {
 
@@ -32,15 +30,14 @@ const GausLogic = (mtx, size) => {
 };
 
 function MatrixGaus({ size }) {
-  const [matrix, setMatrix] = useState(generateMatrix(size)); // Initialize the matrix state
+  const [matrix, setMatrix] = useState(generateMatrix(size)); 
   const [result, setResult] = useState([]);
 
-  // Recreate the matrix whenever the size prop changes
   useEffect(() => {
     setMatrix(generateMatrix(size));
   }, [size]);
 
-  // Notify parent component about the matrix change
+  
   useEffect(() => {
     setMatrix(generateMatrix(size));
   }, [size]);
@@ -51,7 +48,7 @@ function MatrixGaus({ size }) {
         rIndex === rowIndex && cIndex === colIndex ? event.target.value : cell
       )
     );
-    setMatrix(newMatrix); // Update the matrix state with the new input values
+    setMatrix(newMatrix); 
   };
 
   const handleSolve = () => {
@@ -61,7 +58,7 @@ function MatrixGaus({ size }) {
         alert("Matrix is empty. Please enter matrix values.");
         return;
       }
-      const mtxCopy = matrix.map(row => row.map(cell => parseFloat(cell) || 0)); // Convert to numbers
+      const mtxCopy = matrix.map(row => row.map(cell => parseFloat(cell) || 0));
       const solution = GausLogic(mtxCopy, size);
       setResult(solution);
     } catch (error) {

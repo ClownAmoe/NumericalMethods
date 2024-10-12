@@ -11,7 +11,10 @@ function Header(){
                 <a href = "./gaus.html">
                     <button className="navbarButton">Gaus</button>
                 </a>
-
+                
+                <a href = "./newton.html">
+                    <button className="navbarButton">Newton</button>
+                </a>
             </div>
     
         </div>

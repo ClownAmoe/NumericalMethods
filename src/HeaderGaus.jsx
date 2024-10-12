@@ -4,17 +4,17 @@ import MatrixGaus from "./MatrixGaus";
 
 function HeaderGaus() {
   const [inputValue, setInputValue] = useState(''); 
-  const [matrixSize, setMatrixSize] = useState(null);  // Initialize matrixSize state
+  const [matrixSize, setMatrixSize] = useState(null);  
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
 
   const handleSubmit = () => {
-    const sizeNow = parseInt(inputValue, 10);  // Parse input as an integer
+    const sizeNow = parseInt(inputValue, 10);  
 
     if (!isNaN(sizeNow) && sizeNow > 0) {
-      setMatrixSize(sizeNow);  // Set matrix size if input is valid
+      setMatrixSize(sizeNow); 
     } else {
       alert("Please enter a valid number for the matrix size.");
     }
@@ -34,7 +34,7 @@ function HeaderGaus() {
         Submit
       </button>
 
-      {matrixSize && <MatrixGaus size={matrixSize} />}  {/* Render MatrixGaus only if matrixSize is set */}
+      {matrixSize && <MatrixGaus size={matrixSize} />} 
     </div>
   );
 }
