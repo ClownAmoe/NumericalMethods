@@ -15,6 +15,10 @@ function Header(){
                 <a href = "./newton.html">
                     <button className="navbarButton">Newton</button>
                 </a>
+
+                <a href = "./iterative.html">
+                    <button className="navbarButton">Iterative</button>
+                </a>
             </div>
     
         </div>

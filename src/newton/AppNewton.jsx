@@ -1,5 +1,5 @@
 import "./AppNewton.css"
-import BodyNewton from "./BodyNewton"
+import BodyNewton from "./BodyNewton.jsx"
 function AppNewton(){
     return(
         <>

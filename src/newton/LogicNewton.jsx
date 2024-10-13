@@ -1,5 +1,5 @@
 import {derivative, evaluate, abs} from "mathjs"
-function LogicNewton({func, vals, start}){
+function LogicNewton({func, start}){
     const eps=1e-6;
     let x = parseFloat(start);
     let res;
