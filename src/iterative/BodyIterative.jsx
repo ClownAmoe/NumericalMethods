@@ -1,14 +1,13 @@
-import "./BodyNewton.css"
-import { useEffect, useState } from "react"
-import LogicNewton from "./LogicNewton"
-import Graph from "./Graph"
-
-function BodyNewton() {
+import { useState } from "react"
+import "./BodyIterative.css"
+import Graph from "../newton/Graph"
+import LogicIterative from "./LogicIterative"
+function BodyIterative(){
     const [func, setFunc] = useState("")
     const [vals, setVals] = useState([])
     const [start, setStart] = useState("")
     const [res, setRes] = useState("")
-
+    
     return (
         <div className="body">
             <label>Enter your function
@@ -24,7 +23,7 @@ function BodyNewton() {
             </label>
 
             <div>
-                <button onClick={(e) => {setRes(LogicNewton({ func, start }))}}>See result</button>
+                <button onClick={(e) => {setRes(LogicIterative({func, start}))}}>See result</button>
             </div>
 
             <div className="res">
@@ -38,4 +37,4 @@ function BodyNewton() {
     )
 }
 
-export default BodyNewton
+export default BodyIterative

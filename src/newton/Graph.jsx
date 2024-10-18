@@ -21,7 +21,7 @@ function Graph({ func, vals }) {
                 data={xyVals}
                 margin={{ right: 30 }}
             >
-                <CartesianGrid strokeDasharray="3 3" />
+                <CartesianGrid strokeDasharray="5 5" />
                 <XAxis dataKey="x" /> 
                 <YAxis />
                 <Line type="monotone" dataKey="y" stroke="#8b5cf6" />

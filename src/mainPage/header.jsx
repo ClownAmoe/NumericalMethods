@@ -17,7 +17,7 @@ function Header(){
                 </a>
 
                 <a href = "./iterative.html">
-                    <button className="navbarButton">Iterative</button>
+                    <button className="navbarButton">Fixed point iteration</button>
                 </a>
             </div>
     
