@@ -1,0 +1,40 @@
+body{
+    text-align: center;
+}
+input{
+    width: 250px;
+    margin-bottom: 0px;
+    height: 30px;
+    background-color: #777269;
+    transition: 0.3s;
+}
+
+input:hover{
+    background-color: #d88e08;
+}
+::placeholder{
+    color: black;
+}
+label{
+    text-align: center;
+    font-size: larger;
+}
+
+button{
+    font-size: 23px;
+    width: 200px;
+    background-color: #777269;
+    height: 35px;
+    border-radius: 20px;
+    transition: 0.3s;
+    margin-bottom: 10px;
+}
+
+button:hover{
+    background-color: #d88e08;
+    transform: scale(1.1);
+}
+.res{
+    text-align: center;
+    font-size: larger;
+}
